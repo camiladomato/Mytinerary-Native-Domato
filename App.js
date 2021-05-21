@@ -5,15 +5,28 @@ import SignIn from './screens/SignIn'
 import SignUp from './screens/SignUp';
 import Itineraries from './screens/Itineraries'
 import Activities from './screens/Activities';
+import { Provider } from 'react-redux';
+import {applyMiddleware, createStore} from 'redux';
+import thunk from 'redux-thunk';
+import mainReducer from './redux/reducers/mainReducer';
 
-export default function App() {
+const App= () => {
+
+const store = createStore(mainReducer, applyMiddleware(thunk))
+
+
   return (
-      //<Home />
-      //<SignIn />
-      //<SignUp />
-      //<Cities />
-      //<Itineraries />
+     <Provider store={store}>
+      {/* <Home />
+      <SignIn />
+      <SignUp />
       <Activities />
+      <Itineraries />*/}
+      
+      <Cities /> 
+     </Provider>
+     
   );
 }
 
+export default App

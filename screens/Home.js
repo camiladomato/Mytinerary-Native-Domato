@@ -6,7 +6,7 @@ const Home= () => {
   return (
     <>
     <View style={styles.container}>
-    <Image source={require('./assets/imghome.png')} style={styles.fotoHome}/>
+    <Image source={require('../assets/imghome.png')} style={styles.fotoHome}/>
       <Text style={styles.subtexto}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
       <Text style={styles.boton}>Lest go!</Text>  
     </View>

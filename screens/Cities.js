@@ -1,17 +1,32 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useEffect } from 'react'
+import {  StyleSheet, Text, TextInput, View , ImageBackground} from 'react-native'
+import {connect} from 'react-redux'
+import citiesActions from '../redux/actions/citiesActions'
 
-const Cities= () => {
+
+
+const Cities= (props) => {
+useEffect(()=>{props.cargarCiudades()},[])
+  
   return (
     <>
     <View style={styles.container}>
-      <Text style={styles.texto}>Cities!</Text>
-        
-            <TextInput placeholder="Search here"
-            placeholderTextColor= "black"
-            color = "black"
-            style = {styles.input}/>    
+            <Text style={styles.texto}>Cities!</Text>
+                  <TextInput placeholder="Search here"
+                  placeholderTextColor= "black"
+                  color = "black"
+                  style = {styles.input}/>    
+          {props.listaCities.map(city =>{
+            return(
+                <View>
+                    <ImageBackground source={{uri:`${city.path}`}} style={styles.foto} key={city.city}></ImageBackground>
+                    <Text style={styles.texto}> {city.city}</Text>
+
+                </View>
+            )
+          } ) }
     </View>
+    
     </>
   
     )
@@ -38,7 +53,22 @@ const styles = StyleSheet.create({
     width: '80%',
     marginTop: 50,
   },
+  foto:{
+    height:30,
+    width:30,
+  }
 
 });
-
-export default Cities
+const mapStateToProps = state =>{
+  return{
+      listaCities: state.city.cities,
+      //listaItinerary: state.itinerary.itinerarios,
+        
+  }
+}
+const mapDispatchToProps = {
+      cargarCiudades: citiesActions.cargarCities,
+      //cargarItinerarios: itineraryActions.cargarItinerarios,
+     
+}  
+export default connect (mapStateToProps, mapDispatchToProps) (Cities)
