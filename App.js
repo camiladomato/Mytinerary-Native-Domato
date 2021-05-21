@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Cities from './Cities';
+import Home from './Home'
+import SignIn from './SignIn'
+import SignUp from './SignUp';
+import Itineraries from './Itineraries'
+import Activities from './Activities';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      //<Home />
+      //<SignIn />
+      //<SignUp />
+      //<Cities />
+      //<Itineraries />
+      <Activities />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
