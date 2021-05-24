@@ -10,6 +10,7 @@ import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import mainReducer from './redux/reducers/mainReducer';
 
+
 const App= () => {
 
 const store = createStore(mainReducer, applyMiddleware(thunk))
@@ -17,13 +18,16 @@ const store = createStore(mainReducer, applyMiddleware(thunk))
 
   return (
      <Provider store={store}>
-      {/* <Home />
+       {/* <Home />
       <SignIn />
       <SignUp />
-      <Activities />
-      <Itineraries />*/}
+      <Activities /> */}
       
-      <Cities /> 
+      <Cities />
+      <Itineraries />
+      
+       
+      
      </Provider>
      
   );

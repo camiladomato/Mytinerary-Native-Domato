@@ -8,7 +8,6 @@ const initialState ={
 const reducerCity = (state = initialState , action) => {
     switch (action.type){
         case 'CARGAR_CITIES':
-            console.log(action.payload)
             return {
                 ...state,
                 cities: action.payload,
