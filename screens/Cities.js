@@ -3,7 +3,7 @@ import {  StyleSheet, Text,  View , Image, ScrollView , TextInput} from 'react-n
 import {connect} from 'react-redux'
 import citiesActions from '../redux/actions/citiesActions'
 import Itineraries from './Itineraries'
-
+import itinerariesActions from '../redux/actions/itinerariesActions'
 
 
 const Cities= (props) => {
@@ -13,7 +13,7 @@ useEffect(()=>{props.cargarCiudades()},[])
         <>
               <ScrollView>
               <View style={styles.container}>
-                      <Text style={styles.title}>Cities!</Text>
+              <Image source={require('../assets/cities.png')} style={styles.fotoCity}/>
                       <TextInput placeholder="Search here"
                                   placeholderTextColor= "black"
                                   color = "black"
@@ -32,7 +32,7 @@ useEffect(()=>{props.cargarCiudades()},[])
                             </View>
                           )
                       })}                     
-                    {props.filterCities.length < 0 && props.listaCities.map(city =>{
+                   {props.filterCities.length < 0 && props.listaCities.map(city =>{
                       var imagen = city.path.slice(10,city.path.length)
                       return( 
                           <View style={styles.infoSelect} key={city.city}>
@@ -41,10 +41,10 @@ useEffect(()=>{props.cargarCiudades()},[])
                               {!props.listaItinerary.length 
                               ? <Text >We don't have any itineraries yet!</Text>
                               : <Itineraries />
-                              }
+                              } 
                           </ View>
                           )      
-                    })}
+                    })} 
                     
                 </View>
               </ScrollView>            
@@ -52,7 +52,6 @@ useEffect(()=>{props.cargarCiudades()},[])
     )
     
 }
-
 
 
 const styles = StyleSheet.create({
@@ -84,11 +83,15 @@ const styles = StyleSheet.create({
     margin:10,
   },
   fotoN:{
-    height:300,
-    width:350,
-    marginTop: 40,
-    marginBottom:70,
-
+    height:400,
+    width:400,
+    marginTop: 20,
+    marginBottom:10,
+  },
+  fotoCity:{
+    height:310,
+    width:400,
+    marginTop: 30,
   },
   fotosCities:{
     flex:1,
@@ -97,23 +100,22 @@ const styles = StyleSheet.create({
     width: '80%',
     height:40,
     backgroundColor: 'white',
-    marginTop: 10,
+    marginTop: 20,
     textAlign: 'center'
   },
-
 
 });
 const mapStateToProps = state =>{
   return{
       listaCities: state.city.cities,
-      //listaItinerary: state.itinerary.itinerarios,
+      listaItinerary: state.itinerary.itinerarios,
       filterCities: state.city.filterCities
               
   }
 }
 const mapDispatchToProps = {
       cargarCiudades: citiesActions.cargarCities,
-      //cargarItinerarios: itineraryActions.cargarItinerarios,
+      cargarItinerarios: itinerariesActions.cargarItinerarios,
       buscar: citiesActions.filterCities
       
      

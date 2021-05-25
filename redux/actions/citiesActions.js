@@ -2,7 +2,8 @@
 import axios from 'axios'
 
 const citiesActions ={
-    cargarCities: () => {
+    cargarCities: (props) => {
+        console.log(props)
         return (dispatch, getstate) => {
             axios.get('https://mitinerary-domato.herokuapp.com/api/cities/')
             .then(response => dispatch ({type: 'CARGAR_CITIES', payload:response.data.response}))
@@ -11,7 +12,6 @@ const citiesActions ={
     },
 
     filterCities:(e) => {
-        console.log(e)
         return  (dispatch, getState) =>{ dispatch({type: 'FILTER_CITIES' , payload: e })
         }
     },

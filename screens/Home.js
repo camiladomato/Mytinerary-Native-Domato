@@ -1,16 +1,23 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image} from 'react-native';
+import Carrousel from './Carrousel'
+
+
 
 const Home= () => {
   return (
     <>
-    <View style={styles.container}>
-    <Image source={require('../assets/imghome.png')} style={styles.fotoHome}/>
-      <Text style={styles.subtexto}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
-      <Text style={styles.boton}>Lest go!</Text>  
-    </View>
-    
+     
+        <View style={styles.container}>
+        <Image source={require('../assets/imghome.png')} style={styles.fotoHome}/>
+          <Text style={styles.subtexto}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
+          <Text style={styles.boton}>Lest go!</Text>  
+          </View>
+
+        <Carrousel />
+       
+  
     </>
   
     )
@@ -25,7 +32,7 @@ const styles = StyleSheet.create({
       
   },
   subtexto:{
-    fontSize:15,
+    fontSize:18,
     color: 'white',
     width: '80%',
     marginTop: 25,

@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View , Image} from 'react-native';
 
 const SignUp= () => {
   return (
     <>
     <View style={styles.container}>
+    <Image source={require('../assets/signup1.png')} style={styles.fotoSignUp}/>
       <Text style={styles.texto}>Login to account:</Text>
         <View style={styles.formulario}>
             <TextInput placeholder="Enter your Name"
@@ -62,10 +63,9 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   texto:{
-    fontSize: 25,
+    fontSize: 20,
     color: 'white',
     width: '80%',
-    marginTop: 50,
   },
   botonEnv:{
     color:'#09ABF5',
@@ -74,6 +74,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding:10,
     marginTop: 15,
+  },
+  fotoSignUp:{
+    height:250,
+    width:420,
   }
 });
 
