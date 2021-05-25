@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground , Image} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
 const Carrusel = () => {
-
-
-
     const city = [
-        { id: 1, nombre: "Rome", url: 'https://imgur.com/75VaTiu' },
+        { id: 1, nombre: "Rome", url: 'https://imgur.com/SHy1H37' },
         { id: 2, nombre: "Cancun", url: 'https://imgur.com/SHy1H37' },
         { id: 3, nombre: "Ibiza", url: 'https://imgur.com/uk3k54w' },
         { id: 4, nombre: "New York", url: 'https://imgur.com/K9OaME2' },
@@ -43,7 +40,7 @@ const Carrusel = () => {
                 loop={true}
                 autoplay={true}
             />
-
+ 
         </View>
     )
 }
@@ -53,8 +50,8 @@ const styles = StyleSheet.create({
     image: {
         resizeMode: "cover",
         justifyContent: "center",
-        height: 300,
-        width: "90%"
+        height: 200,
+        width: 400,
     },
     text: {
         color: "white",
