@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text,  TextInput,  View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View , ImageBackground } from 'react-native';
 import Itineraries from './Itineraries'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import citiesActions from '../redux/actions/citiesActions'
@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {useEffect,useState} from 'react'
 
 const City= (props) => {
-  console.log(props.route.params)
   const [ciudad, setCiudad] = useState([])
     const idCiudad = props.route.params
   
@@ -17,9 +16,6 @@ const City= (props) => {
     )
     props.cargarItinerarios(idCiudad)
 },[])
-  
-
-    
     return (
    
        <ScrollView>
@@ -30,8 +26,13 @@ const City= (props) => {
                                   <Text style={styles.texto}>{ciudad.info}</Text>
                                                       
                                   {!props.listaItinerary.length 
-                                      ? <Text style={styles.textoItinerary} >We don't have any itineraries yet!</Text>
-                                      : <Itineraries />
+                                      ? 
+                                      <>
+                                      <ImageBackground source={{uri: 'https://i.imgur.com/7hLRabq.jpg' }} style={styles.foto} >
+                                      <Text style={styles.textoItinerary} >We don't have any itineraries yet!</Text>
+                                      </ImageBackground>
+                                      </>
+                                      : <Itineraries  />
                                   }
         </View>     
                              
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
   foto:{
     height:220,
     width:400,
+    marginTop:20,
     marginBottom:20,
   },
 

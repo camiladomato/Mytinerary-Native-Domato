@@ -5,29 +5,28 @@ import {connect} from 'react-redux'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
 
-const Itineraries= (props) => {  
-  console.log(props)      
-        
-        return(
-          <ScrollView>
-              <View style={styles.comtainer}>
-                    
-                    <View style={styles.iconos}>
-                    <Text>Name Author</Text>
-                      <Text>Title Itinerary</Text>
-                            <Text><Image source={require('../assets/billete.png')} style={styles.fotoIcono} /> </Text>
-                            <Text><Image source={require('../assets/reloj.png')} style={styles.fotoIcono} /> </Text>
-                            <Text><Image source={require('../assets/megusta.png')} style={styles.fotoIcono} /></Text>
-                    </View>
-                </View>
-          </ScrollView>
-         
+const Itineraries= (props) => {      
+ 
+ return(
+          <>
+              {props.listaItinerary.map((itinerary)=>{
                   
-                        
-          )
-     
-     
-  }
+                    <ScrollView>
+                        <View style={styles.container}>
+                                <Text style={styles.texto}>{itinerary.authorName}</Text>
+                                <Text tyle={styles.texto}>{itinerary.title}</Text>
+                              
+                              <View style={styles.iconos}>
+                                      <Text><Image source={require('../assets/billete.png')} style={styles.fotoIcono} /> </Text>
+                                      <Text><Image source={require('../assets/reloj.png')} style={styles.fotoIcono} /> </Text>
+                                      <Text><Image source={require('../assets/megusta.png')} style={styles.fotoIcono} /></Text>
+                              </View>
+                          </View>
+                    </ScrollView>
+                })}
+          </>
+  )     
+}
      
 
 const styles = StyleSheet.create({

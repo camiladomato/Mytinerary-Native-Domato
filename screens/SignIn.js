@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
 const SignIn= (props) => {
-  console.log(props)
+ 
   const [userLoggedIn,setUserLoggedIn] =(useState({email:"",password:""}))
    
   const readInputForm= (e , campo)=> {

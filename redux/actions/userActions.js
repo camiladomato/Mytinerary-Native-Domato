@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const userActions={
     crearUsuario:(newUser) => {
-        console.log(newUser)
         return async(dispatch, getState)=>{
             const respuesta = await axios.post('https://mitinerary-domato.herokuapp.com/api/user/signup', newUser)
             if(!respuesta.data.success){
