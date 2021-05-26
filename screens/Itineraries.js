@@ -1,53 +1,34 @@
 import React from 'react'
-import { StyleSheet, Text, View , Image } from 'react-native'
+import { StyleSheet, Text, View , Image,  ScrollView} from 'react-native'
 import {useEffect,useState} from 'react'
 import {connect} from 'react-redux'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
 
-const Itineraries= (props) => {
-  const [citySelect, setCitySelect] = useState(null)
-  useEffect(()=>{setCitySelect(props.listaCities.find(city => city._id ))
-    props.cargarItinerarios()
-    } , [])
-
-  if (!citySelect ) {
-      return <Text>Loading...</Text>
-  }
-    
-    return(
-      <>
-      <View style={styles.container} >
-        <Text >{citySelect.city}</Text>
-      </View>
-      <View >
-              <Text>{citySelect.info}</Text>
-          </View>
-          {!props.listaItinerary.length ? <Text className="txt-dont">We don't have any itineraries yet!</Text>
-      : <View> 
-      {props.listaItinerary.map((itinerary)=>{
-        var imagenItinerary = ciudad.path.slice(10,ciudad.path.length)
+const Itineraries= (props) => {  
+  console.log(props)      
         
         return(
-        <View>
-              <Text>{itinerary.title}</Text>
-              <View > 
-                <Image source={{uri:'https://mitinerary-domato.herokuapp.com/assets/'+ imagenItinerary }} style={styles.foto} /> 
-              </View> 
-                <Text>{itinerary.authorName}</Text>
-              <View>
-                      <Text>{Array(itinerary.price).fill(<Image source={require('../assets/billete.png')} style={styles.foto} />)} </Text>
-                      <Text>{Array(itinerary.duration).fill(<Image source={require('../assets/reloj.png')} style={styles.foto} />)} </Text>
-                      <Text><Image source={require('../assets/megusta.png')} style={styles.foto} /></Text>
-              </View>
-          </View>        
+          <ScrollView>
+              <View style={styles.comtainer}>
+                    
+                    <View style={styles.iconos}>
+                    <Text>Name Author</Text>
+                      <Text>Title Itinerary</Text>
+                            <Text><Image source={require('../assets/billete.png')} style={styles.fotoIcono} /> </Text>
+                            <Text><Image source={require('../assets/reloj.png')} style={styles.fotoIcono} /> </Text>
+                            <Text><Image source={require('../assets/megusta.png')} style={styles.fotoIcono} /></Text>
+                    </View>
+                </View>
+          </ScrollView>
+         
+                  
+                        
           )
-      })}
-      </View>
-      }
-      </>
-  )
-}
+     
+     
+  }
+     
 
 const styles = StyleSheet.create({
   container: {
@@ -63,6 +44,16 @@ const styles = StyleSheet.create({
     width: '80%',
     marginTop: 50,
   },
+  fotoIcono:{
+    height:20,
+    width:15,
+    resizeMode: "cover",
+    margin:10,
+  },
+  iconos:{
+    justifyContent:"space-around",
+    marginTop:43,
+  }
 
 });
 
