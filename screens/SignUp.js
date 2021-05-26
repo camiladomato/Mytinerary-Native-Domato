@@ -1,22 +1,23 @@
-import React from 'react';
+import React from 'react'
 import { StyleSheet, Text, TextInput, View , Image} from 'react-native';
+import { useState } from 'react'
+import RNPickerSelect from 'react-native-picker-select'
+import { connect } from 'react-redux'
+import userActions from '../redux/actions/userActions';
 
-const SignUp= () => {
+const SignUp= (props) => {
   const [newUser,setNewUser] = useState ({name:"",lastName:"",email:"",password:"",urlImage:"",country:""})
-  const [selectedValue, setSelectedValue] = useState("country")
   
-  const readInput= e => {
-      const campo = e.name
-      const valor = e.value
+  const readInput= (e , campo)=> {
+    
       setNewUser({
           ...newUser,
-          [campo]:valor
+          [campo]: e
       })
   }
 
-  const send = async (e = null ) => { 
-       var user =  newUser 
-      const respuesta = await props.crearUsuario(user)
+  const send = async () => {
+       await props.crearUsuario(newUser)
      
   }
   var paises = ["Russia","Argentine","France","Spain","United States","Germany","Italy","Mexico"] 
@@ -31,13 +32,13 @@ const SignUp= () => {
             color = "black"
             style = {styles.input}
             value={newUser.name}
-            onChangeText={readInput} 
+            onChangeText={(e)=>readInput(e, 'name')}
             />
             <TextInput placeholder="Enter your LastName"
             placeholderTextColor= "black"
             color = "black"
             style = {styles.input}
-            onChangeText={readInput}
+            onChangeText={(e)=>readInput(e, 'lastName')}
             value={newUser.lastName}
             />
             <TextInput placeholder="Enter your Email"
@@ -45,31 +46,35 @@ const SignUp= () => {
             color = "black"
             style = {styles.input}
             value={newUser.email}
-            onChangeText={readInput}/>
+            onChangeText={(e)=>readInput(e, 'email')}/>
             <TextInput placeholder="Enter your Password"
             placeholderTextColor= "black"
             color = "black"
             style = {styles.input}
-            value={newUser.password}/>
+            value={newUser.password}
+            onChangeText={(e)=>readInput(e,'password')}/>
             <TextInput placeholder="Enter your Photo (url)"
             placeholderTextColor= "black"
             color = "black"
             style = {styles.input}
-            onChangeText={readInput}/>
-            <Picker
-            selectedValue={selectedValue}
-            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-            style = {styles.input}
-            >
-              {paises.map(pais =>{
-                            return (
-                              <Picker.Item label="Country" value={pais}> {pais} </Picker.Item>
+            onChangeText={(e)=>readInput(e ,'urlImage')}/>
+          
+         
+          <RNPickerSelect 
+                    onValueChange={(value) => readInput(value,"country")}
+                    useNativeAndroidPickerStyle={false}
+                    placeholder={{ label: "Select your country", value:"italia" }}
+                    items={
+                        paises.map(pais => {
+                            return(
+                                {label:pais, value: pais}
                             )
-                        })}
-     
-            </Picker>
+                        })
+                    }
+                />
             
-            <Text style={styles.botonEnv}>Send</Text>
+            
+            <Text style={styles.botonEnv} onPress={send}>Send</Text>
 
             
         </View>
@@ -118,4 +123,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignUp
+const mapDispatchToProps ={
+  crearUsuario: userActions.crearUsuario
+ }
+ 
+ 
+ export default connect (null , mapDispatchToProps)(SignUp)

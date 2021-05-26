@@ -4,23 +4,20 @@ import { useState } from 'react'
 import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const SignIn= () => {
+const SignIn= (props) => {
+  console.log(props)
   const [userLoggedIn,setUserLoggedIn] =(useState({email:"",password:""}))
-    
-  const readInputForm= e => {
-      const campo = e.name
-      const valor = e.value
+   
+  const readInputForm= (e , campo)=> {
       setUserLoggedIn({
           ...userLoggedIn,
-          [campo]:valor
+          [campo]: e
       })
   }
-  const sendForm =async (e = null ) =>{
-    var user= userLoggedIn
-    props.loguearUsuario(user)
-    
-   
+  const sendForm =async () =>{
+    await props.loguearUsuario(userLoggedIn)  
 }
+
   
   return (
     <>
@@ -28,22 +25,19 @@ const SignIn= () => {
     <Image source={require('../assets/signin.png')} style={styles.fotoSignin}/>
       <Text style={styles.texto}>Login to account:</Text>
         <View style={styles.formulario}>
-            <TextInput placeholder="Enter your Email"
-            placeholderTextColor= "black"
-            color = "black"
-            style = {styles.input}/>
+            
             <TextInput placeholder="Enter your Email"
             placeholderTextColor= "black"
             color = "black"
             style = {styles.input} 
-            value={userLoggedIn.email} 
-            onChangeText={readInputForm}/>
+            value={userLoggedIn.email}
+            onChangeText={(e)=>readInputForm(e, 'email')} />
             <TextInput placeholder="Enter your Password"
             placeholderTextColor= "black"
             color = "black"
             style = {styles.input} 
             value={userLoggedIn.password}  
-            onChangeText={readInputForm}/>
+            onChangeText={(e)=>readInputForm(e, 'password')} />
             <Text style={styles.botonEnv} onPress={sendForm}>Send</Text>    
             
         </View>

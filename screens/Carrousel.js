@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     image: {
         resizeMode: "cover",
         justifyContent: "center",
-        height: 200,
+        height: 240,
         width: 420,
-        marginBottom: 10,
+        
     },
     text: {
         color: "white",
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     
     },
     slide:{
-        height: 180,
+        height: 240,
         width: 420,
     }
 

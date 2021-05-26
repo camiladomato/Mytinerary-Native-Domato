@@ -5,14 +5,14 @@ import Carrousel from './Carrousel'
 
 
 
-const Home= () => {
+const Home= ({navigation}) => {
   return (
     <>
      <ScrollView>
         <View style={styles.container}>
         <Image source={require('../assets/imghome.png')} style={styles.fotoHome}/>
           <Text style={styles.subtexto}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
-          <Text style={styles.boton}>Lest go!</Text>  
+          <Text style={styles.boton} onPress={() => navigation.navigate('Cities')}>Lest go!</Text>  
           
             <Carrousel />
          
