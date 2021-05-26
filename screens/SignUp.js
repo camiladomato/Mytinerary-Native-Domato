@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View , Image} from 'react-native';
+import { StyleSheet, Text, TextInput, View , Image ,Alert} from 'react-native';
 import { useState } from 'react'
 import RNPickerSelect from 'react-native-picker-select'
 import { connect } from 'react-redux'
@@ -9,7 +9,6 @@ const SignUp= (props) => {
   const [newUser,setNewUser] = useState ({name:"",lastName:"",email:"",password:"",urlImage:"",country:""})
   
   const readInput= (e , campo)=> {
-    
       setNewUser({
           ...newUser,
           [campo]: e
@@ -17,7 +16,10 @@ const SignUp= (props) => {
   }
 
   const send = async () => {
-       await props.crearUsuario(newUser)
+       const respuesta = await props.crearUsuario(newUser)
+       if(respuesta.success){
+         Alert.alert("Welcome !!")
+       }
      
   }
   var paises = ["Russia","Argentine","France","Spain","United States","Germany","Italy","Mexico"] 
@@ -46,12 +48,14 @@ const SignUp= (props) => {
             color = "black"
             style = {styles.input}
             value={newUser.email}
+            keyboardType="email-address"
             onChangeText={(e)=>readInput(e, 'email')}/>
             <TextInput placeholder="Enter your Password"
             placeholderTextColor= "black"
             color = "black"
             style = {styles.input}
             value={newUser.password}
+            keyboardType='password'
             onChangeText={(e)=>readInput(e,'password')}/>
             <TextInput placeholder="Enter your Photo (url)"
             placeholderTextColor= "black"
@@ -59,20 +63,22 @@ const SignUp= (props) => {
             style = {styles.input}
             onChangeText={(e)=>readInput(e ,'urlImage')}/>
           
-         
-          <RNPickerSelect 
+            <View style = {styles.input}>
+            <RNPickerSelect
                     onValueChange={(value) => readInput(value,"country")}
-                    useNativeAndroidPickerStyle={false}
+                    useNativeAndroidPickerStyle={false} 
                     placeholder={{ label: "Select your country", value:"italia" }}
-                    items={
+                    items ={
                         paises.map(pais => {
                             return(
-                                {label:pais, value: pais}
+                                {label:pais, value: pais }
                             )
                         })
                     }
-                />
-            
+                    />
+            </View>
+         
+
             
             <Text style={styles.botonEnv} onPress={send}>Send</Text>
 
@@ -90,7 +96,6 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#09ABF5',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   input:{
     width: '80%',
@@ -108,6 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     width: '80%',
+    marginTop:20,
   },
   botonEnv:{
     color:'#09ABF5',

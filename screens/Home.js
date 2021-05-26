@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
   subtexto:{
     fontSize:18,
     color: 'white',
-    width: '80%',
+    width: '85%',
     marginTop: 20,
   },
   fotoHome:{
-    height: 350,
-    width: 420,
+    height: 480,
+    width: 400,
   },
   boton:{
     color:'#09ABF5',

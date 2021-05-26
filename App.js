@@ -10,6 +10,7 @@ import mainReducer from './redux/reducers/mainReducer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button,View, Text, ImageBackground ,StyleSheet } from 'react-native';
+import City from './screens/City'
 
 
 const image = { uri: "https://i.imgur.com/XSVletw.jpg" };
@@ -43,8 +44,8 @@ function Welcome({navigation}) {
           title="Sign Up"
           onPress={() => navigation.navigate('SignUp')}
           color="black"
-          
         />
+       
       </View>
       </ImageBackground>
     </View>
@@ -96,6 +97,7 @@ const store = createStore(mainReducer, applyMiddleware(thunk))
             <Stack.Screen name="Cities" component={Cities} />
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="City" component={City} />
         </Stack.Navigator>
     </NavigationContainer>
       

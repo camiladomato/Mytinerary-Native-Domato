@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View , Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View , Image , Alert} from 'react-native';
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
@@ -38,7 +38,7 @@ const SignIn= (props) => {
             style = {styles.input} 
             value={userLoggedIn.password}  
             onChangeText={(e)=>readInputForm(e, 'password')} />
-            <Text style={styles.botonEnv} onPress={sendForm}>Send</Text>    
+            <Text style={styles.botonEnv} onPress={sendForm} >Send</Text>    
             
         </View>
     </View>
@@ -53,8 +53,7 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#09ABF5',
     alignItems: 'center',
-    justifyContent: 'center',
- 
+   
   },
   input:{
     width: '80%',
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     width: '80%',
+    marginTop:30,
   },
   botonEnv:{
     color:'#09ABF5',
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   fotoSignin:{
-    height:360,
+    height:340,
     width:420,
   }
 });
