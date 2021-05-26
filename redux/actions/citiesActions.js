@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const citiesActions ={
     cargarCities: (props) => {
-        console.log(props)
         return (dispatch, getstate) => {
             axios.get('https://mitinerary-domato.herokuapp.com/api/cities/')
             .then(response => dispatch ({type: 'CARGAR_CITIES', payload:response.data.response}))

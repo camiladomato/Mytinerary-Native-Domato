@@ -13,9 +13,12 @@ const Home= () => {
         <Image source={require('../assets/imghome.png')} style={styles.fotoHome}/>
           <Text style={styles.subtexto}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
           <Text style={styles.boton}>Lest go!</Text>  
+          
+            <Carrousel />
+         
           </View>
 
-        <Carrousel />
+       
         </ScrollView>
        
   
@@ -30,7 +33,6 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#09ABF5',
     alignItems: 'center',
-      
   },
   subtexto:{
     fontSize:18,

@@ -2,6 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View , Image} from 'react-native';
 
 const SignUp= () => {
+  const [newUser,setNewUser] = useState ({name:"",lastName:"",email:"",password:"",urlImage:"",country:""})
+  const [selectedValue, setSelectedValue] = useState("country")
+  
+  const readInput= e => {
+      const campo = e.name
+      const valor = e.value
+      setNewUser({
+          ...newUser,
+          [campo]:valor
+      })
+  }
+
+  const send = async (e = null ) => { 
+       var user =  newUser 
+      const respuesta = await props.crearUsuario(user)
+     
+  }
+  var paises = ["Russia","Argentine","France","Spain","United States","Germany","Italy","Mexico"] 
   return (
     <>
     <View style={styles.container}>
@@ -11,27 +29,46 @@ const SignUp= () => {
             <TextInput placeholder="Enter your Name"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
+            style = {styles.input}
+            value={newUser.name}
+            onChangeText={readInput} 
+            />
             <TextInput placeholder="Enter your LastName"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
+            style = {styles.input}
+            onChangeText={readInput}
+            value={newUser.lastName}
+            />
             <TextInput placeholder="Enter your Email"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
+            style = {styles.input}
+            value={newUser.email}
+            onChangeText={readInput}/>
             <TextInput placeholder="Enter your Password"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
+            style = {styles.input}
+            value={newUser.password}/>
             <TextInput placeholder="Enter your Photo (url)"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
-            <TextInput placeholder="Choose your country"
-            placeholderTextColor= "black"
-            color = "black"
-            style = {styles.input}/>
+            style = {styles.input}
+            onChangeText={readInput}/>
+            <Picker
+            selectedValue={selectedValue}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            style = {styles.input}
+            >
+              {paises.map(pais =>{
+                            return (
+                              <Picker.Item label="Country" value={pais}> {pais} </Picker.Item>
+                            )
+                        })}
+     
+            </Picker>
+            
             <Text style={styles.botonEnv}>Send</Text>
 
             

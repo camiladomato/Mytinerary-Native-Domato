@@ -1,7 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View , Image } from 'react-native';
+import { useState } from 'react'
+import { connect } from 'react-redux'
+import userActions from '../redux/actions/userActions'
 
 const SignIn= () => {
+  const [userLoggedIn,setUserLoggedIn] =(useState({email:"",password:""}))
+    
+  const readInputForm= e => {
+      const campo = e.name
+      const valor = e.value
+      setUserLoggedIn({
+          ...userLoggedIn,
+          [campo]:valor
+      })
+  }
+  const sendForm =async (e = null ) =>{
+    var user= userLoggedIn
+    props.loguearUsuario(user)
+    
+   
+}
+  
   return (
     <>
     <View style={styles.container}>
@@ -15,12 +35,16 @@ const SignIn= () => {
             <TextInput placeholder="Enter your Email"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
+            style = {styles.input} 
+            value={userLoggedIn.email} 
+            onChangeText={readInputForm}/>
             <TextInput placeholder="Enter your Password"
             placeholderTextColor= "black"
             color = "black"
-            style = {styles.input}/>
-            <Text style={styles.botonEnv}>Send</Text>    
+            style = {styles.input} 
+            value={userLoggedIn.password}  
+            onChangeText={readInputForm}/>
+            <Text style={styles.botonEnv} onPress={sendForm}>Send</Text>    
             
         </View>
     </View>
@@ -68,4 +92,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignIn
+const mapDispatchToProps ={
+  loguearUsuario : userActions.loguearUsuario
+}
+
+export default connect(null,mapDispatchToProps)(SignIn)

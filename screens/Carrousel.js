@@ -4,18 +4,18 @@ import Carousel from 'react-native-snap-carousel';
 
 const Carrusel = () => {
     const city = [
-        { id: 1, nombre: "Rome", url: 'https://imgur.com/SHy1H37' },
-        { id: 2, nombre: "Cancun", url: 'https://imgur.com/SHy1H37' },
-        { id: 3, nombre: "Ibiza", url: 'https://imgur.com/uk3k54w' },
-        { id: 4, nombre: "New York", url: 'https://imgur.com/K9OaME2' },
-        { id: 5, nombre: "Chicago", url: 'https://imgur.com/YRwhszt' },
-        { id: 6, nombre: "Paris", url: 'https://imgur.com/oirkSPy' },
-        { id: 7, nombre: "Amsterdam", url: 'https://imgur.com/viIqjof' },
-        { id: 8, nombre: "Barcelona", url: 'https://imgur.com/6nzASae' },
-        { id: 9, nombre: "Milan", url: 'https://imgur.com/VDKY1TB' },
-        { id: 10, nombre: "Buenos Aires", url: 'https://imgur.com/VYoCvjM' },
-        { id: 11, nombre: "Moscow", url: 'https://imgur.com/kD0pv2G' },
-        { id: 12, nombre: "Berlin", url: 'https://imgur.com/ybXyi6h' },
+        { id: 1, nombre: "Rome", url: 'https://i.imgur.com/75VaTiu.jpg' },
+        { id: 2, nombre: "Cancun", url: 'https://i.imgur.com/SHy1H37.jpg' },
+        { id: 3, nombre: "Ibiza", url: 'https://i.imgur.com/uk3k54w.jpg' },
+        { id: 4, nombre: "New York", url: 'https://i.imgur.com/K9OaME2.jpg' },
+        { id: 5, nombre: "Chicago", url: 'https://i.imgur.com/YRwhszt.jpg' },
+        { id: 6, nombre: "Paris", url: 'https://i.imgur.com/oirkSPy.jpg' },
+        { id: 7, nombre: "Amsterdam", url: 'https://i.imgur.com/fRVyOFo.jpg' },
+        { id: 8, nombre: "Barcelona", url: 'https://i.imgur.com/6nzASae.jpg' },
+        { id: 9, nombre: "Milan", url: 'https://i.imgur.com/VDKY1TB.jpg' },
+        { id: 10, nombre: "Buenos Aires", url: 'https://i.imgur.com/VYoCvjM.jpg' },
+        { id: 11, nombre: "Moscow", url: 'https://i.imgur.com/kD0pv2G.jpg' },
+        { id: 12, nombre: "Berlin", url: 'https://i.imgur.com/ybXyi6h.jpg' },
     ]
 
     const _renderItem = ({ item, index }) => {
@@ -31,7 +31,6 @@ const Carrusel = () => {
     return (
         <View style={styles.containerCarrusel}>
             <Carousel
-                ref={(c) => { _carousel = c; }}
                 data={city}
                 sliderWidth={500}
                 itemWidth={400}
@@ -51,14 +50,16 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         justifyContent: "center",
         height: 200,
-        width: 400,
+        width: 420,
+        marginBottom: 10,
     },
     text: {
         color: "white",
-        fontSize: 42,
+        fontSize: 25,
         fontWeight: "bold",
-        backgroundColor: "#000000a0",
-        width: 324,
+        backgroundColor: "#AECAF1",
+        opacity: 0.7,
+        width: 420,
         textAlign: "center",
         alignItems: "center",
         justifyContent: "center"
@@ -66,7 +67,12 @@ const styles = StyleSheet.create({
     containerCarrusel: {
         marginBottom: 20,
         marginTop: 20,
+    
     },
+    slide:{
+        height: 180,
+        width: 420,
+    }
 
 
 });

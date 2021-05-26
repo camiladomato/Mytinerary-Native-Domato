@@ -25,7 +25,7 @@ const store = createStore(mainReducer, applyMiddleware(thunk))
       <Itineraries />
       <Cities />
       <Activities /> */}
-       <Home />
+      <SignIn />
       
       
       

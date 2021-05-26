@@ -7,6 +7,7 @@ import itinerariesActions from '../redux/actions/itinerariesActions'
 
 
 const Cities= (props) => {
+  console.log(props)
 useEffect(()=>{props.cargarCiudades()},[])
   
   return (
@@ -14,7 +15,7 @@ useEffect(()=>{props.cargarCiudades()},[])
               <ScrollView>
               <View style={styles.container}>
               <Image source={require('../assets/cities.png')} style={styles.fotoCity}/>
-                      <TextInput placeholder="Search here"
+                      <TextInput placeholder="Search here..."
                                   placeholderTextColor= "black"
                                   color = "black"
                                   style = {styles.input}
@@ -27,7 +28,7 @@ useEffect(()=>{props.cargarCiudades()},[])
                           var imagenSeleccionada = ciudad.path.slice(10,ciudad.path.length)
                           return(
                             <View  key={ciudad.city}  style={styles.container}>
-                              <Text>{ciudad.city}</Text>
+                              <Text  style={styles.texto}>{ciudad.city}</Text>
                               <Image source={{uri:'https://mitinerary-domato.herokuapp.com/assets/'+ imagenSeleccionada }} style={styles.foto} />
                             </View>
                           )
@@ -35,7 +36,7 @@ useEffect(()=>{props.cargarCiudades()},[])
                    {props.filterCities.length < 0 && props.listaCities.map(city =>{
                       var imagen = city.path.slice(10,city.path.length)
                       return( 
-                          <View style={styles.infoSelect} key={city.city}>
+                          <View style={styles.container} key={city.city}>
                               <Text style={styles.texto} > {city.city}</Text>
                               <Image source={{uri:'https://mitinerary-domato.herokuapp.com/assets/'+ imagen}} style={styles.foto} />
                               {!props.listaItinerary.length 
@@ -63,24 +64,15 @@ const styles = StyleSheet.create({
  
   },
   texto:{
-    fontSize: 30,
+    fontSize: 15,
     color: 'white',
-    width: '80%',
-    marginTop: 60,
-  },
-  title:{
-    fontSize: 30,
-    color: 'white',
-    width: '80%',
-    marginTop: 80,
-  },
-  subTexto:{
-    color:'white',
+    marginTop: 10,
+    marginBottom:10,
   },
   foto:{
-    height:180,
-    width:350,
-    margin:10,
+    height:220,
+    width:400,
+    marginBottom:20,
   },
   fotoN:{
     height:400,
@@ -90,7 +82,7 @@ const styles = StyleSheet.create({
   },
   fotoCity:{
     height:310,
-    width:400,
+    width:420,
     marginTop: 30,
   },
   fotosCities:{
@@ -100,7 +92,8 @@ const styles = StyleSheet.create({
     width: '80%',
     height:40,
     backgroundColor: 'white',
-    marginTop: 20,
+    marginTop: 30,
+    marginBottom:20,
     textAlign: 'center'
   },
 
